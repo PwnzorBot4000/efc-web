@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "efc_web", "efc_web\efc_web.csproj", "{A88BD520-7966-4761-923D-DB97C510F699}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A88BD520-7966-4761-923D-DB97C510F699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A88BD520-7966-4761-923D-DB97C510F699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A88BD520-7966-4761-923D-DB97C510F699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A88BD520-7966-4761-923D-DB97C510F699}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
