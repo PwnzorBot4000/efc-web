@@ -4,7 +4,7 @@ using System.Web.Routing;
 
 namespace efc_web
 {
-	public class Global : HttpApplication
+	public partial class Global : HttpApplication
 	{
 		protected void Application_Start()
 		{
