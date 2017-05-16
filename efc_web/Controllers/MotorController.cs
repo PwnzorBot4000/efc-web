@@ -28,5 +28,110 @@ namespace efc_web.Controllers
                 return Ok("offline");
             }
         }
+
+        [HttpPost]
+        [Route("api/motor/start")]
+        public IHttpActionResult Start()
+        {
+            try
+            {
+                engine.Start();
+                return Ok();
+            }
+            catch (EngineMessageException)
+            {
+                return Ok("offline");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/motor/stop")]
+        public IHttpActionResult Stop()
+        {
+            try
+            {
+                engine.Stop();
+                return Ok();
+            }
+            catch (EngineMessageException)
+            {
+                return Ok("offline");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/motor/reverse")]
+        public IHttpActionResult Reverse()
+        {
+            try
+            {
+                engine.Reverse();
+                return Ok();
+            }
+            catch (EngineMessageException)
+            {
+                return Ok("offline");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/motor/reset")]
+        public IHttpActionResult Reset()
+        {
+            try
+            {
+                engine.Reset();
+                return Ok();
+            }
+            catch (EngineMessageException)
+            {
+                return Ok("offline");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/motor/emergencystop")]
+        public IHttpActionResult EmergencyStop()
+        {
+            try
+            {
+                engine.EmergencyStop();
+                return Ok();
+            }
+            catch (EngineMessageException)
+            {
+                return Ok("offline");
+            }
+        }
+
+        [HttpGet]
+        [Route("api/motor/getfrequency")]
+        public IHttpActionResult GetFrequency()
+        {
+            try
+            {
+                engine.GetFrequency();
+                return Ok();
+            }
+            catch (EngineMessageException)
+            {
+                return Ok("offline");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/motor/setfrequency")]
+        public IHttpActionResult SetFrequency(float frequency)
+        {
+            try
+            {
+                engine.SetFrequency(frequency);
+                return Ok();
+            }
+            catch (EngineMessageException)
+            {
+                return Ok("offline");
+            }
+        }
     }
 }
