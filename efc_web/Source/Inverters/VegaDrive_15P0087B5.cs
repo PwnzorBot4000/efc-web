@@ -122,10 +122,6 @@ namespace EFC
                         throw new EngineMessageException("The inverter responded with unknown version code " + version.ToString() + " in register 0x03");
                 }
             }
-
-            public void SetReferneceFrequenct(int newFrequency) {
-                WriteRegister(0x05, (short)newFrequency);
-            }
         }
     }
 }

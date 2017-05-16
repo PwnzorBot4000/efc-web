@@ -51,7 +51,5 @@ namespace EFC
 
         EngineModel GetInverterModel();
         EngineVersion GetInverterVersion();
-        void SetReferneceFrequenct(int newFrequency);
-
     }
 }
