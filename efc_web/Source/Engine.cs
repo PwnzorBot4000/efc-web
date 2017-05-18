@@ -1,11 +1,26 @@
 using System;
+using Newtonsoft.Json;
 
 namespace EFC
 {
     [System.Serializable]
     public class EngineMessageException : System.Exception
     {
-        public EngineMessageException() { }
+        public string keyword;
+
+        public static EngineMessageException offline(string message)
+        {
+            EngineMessageException e = new EngineMessageException(message);
+            e.keyword = "offline";
+            return e;
+        }
+
+        public string toMotorErrorMessage()
+        {
+            return "\"MotorError\": " +
+                JsonConvert.SerializeObject(new MotorError(keyword, Message));
+        }
+
         public EngineMessageException( string message ) : base( message ) { }
         public EngineMessageException( string message, System.Exception inner ) : base( message, inner ) { }
         protected EngineMessageException(

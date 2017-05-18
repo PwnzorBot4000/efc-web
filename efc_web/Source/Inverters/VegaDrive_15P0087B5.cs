@@ -14,9 +14,11 @@ namespace EFC
             public short ReadRegister(ushort reg)
             {
                 modbus link = new modbus();
-                link.Open(port, 9600, 8, Parity.None, StopBits.Two);
+                bool ret = link.Open(port, 9600, 8, Parity.None, StopBits.Two);
+                if (!ret) throw EngineMessageException.offline(
+                    "Opening port " + port + " failed: " + link.modbusStatus);
                 short[] val = new short[1];
-                bool ret = link.SendFc3(address, reg, 1, ref val);
+                ret = link.SendFc3(address, reg, 1, ref val);
                 if (!ret) throw new EngineMessageException(
                     "Read from register 0x" + reg.ToString("x") + " failed: " + link.modbusStatus);
                 link.Close();
@@ -27,7 +29,7 @@ namespace EFC
             {
                 modbus link = new modbus();
 				bool ret = link.Open(port, 9600, 8, Parity.None, StopBits.Two);
-				if (!ret) throw new EngineMessageException (
+				if (!ret) throw EngineMessageException.offline(
 					"Opening port " + port + " failed: " + link.modbusStatus);
                 short[] val = { value };
 				Logger.log(

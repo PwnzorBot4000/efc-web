@@ -23,9 +23,12 @@ namespace efc_web.Controllers
                 EngineStatus s = engine.Status();
                 return Ok(s.ToString());
             }
-            catch (EngineMessageException)
+            catch (EngineMessageException ex)
             {
-                return Ok("offline");
+                if (ex.keyword == "offline")
+                    return Ok("offline");
+                else
+                    return Ok(ex.toMotorErrorMessage());
             }
         }
 
@@ -38,9 +41,9 @@ namespace efc_web.Controllers
                 engine.Start();
                 return Ok();
             }
-            catch (EngineMessageException)
+            catch (EngineMessageException ex)
             {
-                return Ok("offline");
+                return Ok(ex.toMotorErrorMessage());
             }
         }
 
@@ -53,9 +56,9 @@ namespace efc_web.Controllers
                 engine.Stop();
                 return Ok();
             }
-            catch (EngineMessageException)
+            catch (EngineMessageException ex)
             {
-                return Ok("offline");
+                return Ok(ex.toMotorErrorMessage());
             }
         }
 
@@ -68,9 +71,9 @@ namespace efc_web.Controllers
                 engine.Reverse();
                 return Ok();
             }
-            catch (EngineMessageException)
+            catch (EngineMessageException ex)
             {
-                return Ok("offline");
+                return Ok(ex.toMotorErrorMessage());
             }
         }
 
@@ -83,9 +86,9 @@ namespace efc_web.Controllers
                 engine.Reset();
                 return Ok();
             }
-            catch (EngineMessageException)
+            catch (EngineMessageException ex)
             {
-                return Ok("offline");
+                return Ok(ex.toMotorErrorMessage());
             }
         }
 
@@ -98,9 +101,9 @@ namespace efc_web.Controllers
                 engine.EmergencyStop();
                 return Ok();
             }
-            catch (EngineMessageException)
+            catch (EngineMessageException ex)
             {
-                return Ok("offline");
+                return Ok(ex.toMotorErrorMessage());
             }
         }
 
@@ -113,9 +116,9 @@ namespace efc_web.Controllers
                 engine.GetFrequency();
                 return Ok();
             }
-            catch (EngineMessageException)
+            catch (EngineMessageException ex)
             {
-                return Ok("offline");
+                return Ok(ex.toMotorErrorMessage());
             }
         }
 
@@ -128,9 +131,9 @@ namespace efc_web.Controllers
                 engine.SetFrequency(frequency);
                 return Ok();
             }
-            catch (EngineMessageException)
+            catch (EngineMessageException ex)
             {
-                return Ok("offline");
+                return Ok(ex.toMotorErrorMessage());
             }
         }
     }
