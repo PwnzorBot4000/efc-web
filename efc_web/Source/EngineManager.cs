@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using EFC;
 
 namespace efc_web
 {
@@ -6,6 +7,7 @@ namespace efc_web
     {
         static EngineManager instance;
         BackgroundWorker manager_process;
+        IEngine engine;
 
         float last_rpm = 0;
 
@@ -15,6 +17,11 @@ namespace efc_web
                 instance = new EngineManager();
         }
 
+        public static IEngine getEngine()
+        {
+            return instance.engine;
+        }
+
         public static float getRpmReading()
         {
             return instance.last_rpm;
@@ -22,6 +29,8 @@ namespace efc_web
 
         EngineManager()
         {
+            engine = new EFC.Engines.VegaDrive_15P0087B5("/dev/ttyUSB0", 1);
+
             manager_process = new BackgroundWorker();
             manager_process.DoWork += manager_process_main;
             manager_process.RunWorkerAsync();

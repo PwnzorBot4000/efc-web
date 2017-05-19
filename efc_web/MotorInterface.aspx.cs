@@ -7,7 +7,7 @@ namespace efc_web
 {
     public partial class MotorInterface : System.Web.UI.Page
     {
-        private IEngine engine;
+        IEngine engine;
 
         public MotorInterface()
         {
@@ -17,7 +17,7 @@ namespace efc_web
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            engine = new VegaDrive("/dev/ttyUSB0", 1);
+            engine = EngineManager.getEngine();
         }
 
         protected void StartEngine(object sender, EventArgs e)

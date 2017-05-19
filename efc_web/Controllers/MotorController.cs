@@ -1,17 +1,15 @@
 ﻿using System.Web.Http;
 using EFC;
 
-using VegaDrive = EFC.Engines.VegaDrive_15P0087B5;
-
 namespace efc_web.Controllers
 {
     public class MotorController : ApiController
     {
-        private IEngine engine;
+        IEngine engine;
 
         public MotorController()
         {
-            engine = new VegaDrive("/dev/ttyUSB0", 1);
+            engine = EngineManager.getEngine();
         }
 
         [HttpGet]
