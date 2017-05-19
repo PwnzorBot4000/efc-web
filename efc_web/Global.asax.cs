@@ -8,6 +8,7 @@ namespace efc_web
 	{
 		protected void Application_Start()
 		{
+            EngineManager.initialize();
 			GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 		}

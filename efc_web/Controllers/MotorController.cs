@@ -135,5 +135,12 @@ namespace efc_web.Controllers
                 return Ok(ex.toMotorErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("api/motor/getrpmreading")]
+        public IHttpActionResult GetRpmReading()
+        {
+            return Ok(EngineManager.getRpmReading().ToString());
+        }
     }
 }
