@@ -113,8 +113,7 @@ namespace efc_web.Controllers
         {
             try
             {
-                engine.GetFrequency();
-                return Ok();
+                return Ok(engine.GetFrequency().ToString());
             }
             catch (EngineMessageException ex)
             {
