@@ -1,9 +1,8 @@
 using System;
-using Newtonsoft.Json;
 
 namespace EFC
 {
-    [System.Serializable]
+    [Serializable]
     public class EngineMessageException : System.Exception
     {
         public string keyword;
@@ -18,7 +17,7 @@ namespace EFC
         public string toMotorErrorMessage()
         {
             return "\"MotorError\": " +
-                JsonConvert.SerializeObject(new MotorError(keyword, Message));
+                (new MotorError(keyword, Message)).jsonSerialize();
         }
 
         public EngineMessageException( string message ) : base( message ) { }

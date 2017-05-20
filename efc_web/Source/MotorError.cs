@@ -1,8 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace EFC
 {
-    [System.Serializable]
+    [Serializable]
     public class MotorError
     {
         public string keyword;
@@ -12,6 +13,11 @@ namespace EFC
         {
             this.keyword = keyword;
             this.description = description;
+        }
+
+        public string jsonSerialize()
+        {
+            return JsonConvert.SerializeObject(this);
         }
     }
 }
