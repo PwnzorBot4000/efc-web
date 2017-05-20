@@ -1,15 +1,18 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using EFC;
 
 namespace efc_web.Controllers
 {
     public class MotorController : ApiController
     {
+        EngineManager engine_manager;
         IEngine engine;
 
         public MotorController()
         {
-            engine = EngineManager.getEngine();
+            engine_manager = EngineManager.main;
+            engine = engine_manager.getEngine();
         }
 
         [HttpGet]
@@ -125,7 +128,7 @@ namespace efc_web.Controllers
         {
             try
             {
-                engine.SetFrequency(frequency);
+                engine_manager.setFrequency(frequency);
                 return Ok();
             }
             catch (EngineMessageException ex)
@@ -138,14 +141,36 @@ namespace efc_web.Controllers
         [Route("api/motor/getrpmreading")]
         public IHttpActionResult GetRpmReading()
         {
-            return Ok(EngineManager.getRpmReading());
+            return Ok(engine_manager.getRpmReading());
         }
 
         [HttpPost]
         [Route("api/motor/setrpmreading")]
         public IHttpActionResult SetRpmReading(float rpm)
         {
-            EngineManager.setRpmReading(rpm);
+            engine_manager.setRpmReading(rpm);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/motor/getrpmtarget")]
+        public IHttpActionResult GetRpmTarget()
+        {
+            try
+            {
+                return Ok(engine_manager.getRpmTarget());
+            }
+            catch (Exception ex)
+            {
+                return Ok((new MotorError("invalid", ex.Message)).jsonSerialize());
+            }
+        }
+
+        [HttpPost]
+        [Route("api/motor/setrpmtarget")]
+        public IHttpActionResult SetRpmTarget(float rpm)
+        {
+            engine_manager.setRpmTarget(rpm);
             return Ok();
         }
     }

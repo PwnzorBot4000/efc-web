@@ -7,6 +7,7 @@ namespace efc_web
 {
     public partial class MotorInterface : System.Web.UI.Page
     {
+        EngineManager engine_manager;
         IEngine engine;
 
         public MotorInterface()
@@ -17,7 +18,8 @@ namespace efc_web
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            engine = EngineManager.getEngine();
+            engine_manager = EngineManager.main;
+            engine = engine_manager.getEngine();
         }
 
         protected void StartEngine(object sender, EventArgs e)
@@ -54,7 +56,7 @@ namespace efc_web
         {
             string input = freqsetbox.Text;
             float hertz = Convert.ToSingle(input);
-            engine.SetFrequency(hertz);
+            engine_manager.setFrequency(hertz);
         }
 
         protected void getFreq_click(object sender, EventArgs e)
