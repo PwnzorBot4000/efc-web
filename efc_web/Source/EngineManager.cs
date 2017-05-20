@@ -27,6 +27,11 @@ namespace efc_web
             return instance.last_rpm;
         }
 
+        public static void setRpmReading(float rpm)
+        {
+            instance.last_rpm = rpm;
+        }
+
         EngineManager()
         {
             engine = new EFC.Engines.VegaDrive_15P0087B5("/dev/ttyUSB0", 1);
@@ -38,7 +43,6 @@ namespace efc_web
 
         void manager_process_main(object sender, DoWorkEventArgs e)
         {
-            last_rpm = -1;
         }
     }
 }

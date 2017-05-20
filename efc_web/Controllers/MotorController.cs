@@ -111,7 +111,7 @@ namespace efc_web.Controllers
         {
             try
             {
-                return Ok(engine.GetFrequency().ToString());
+                return Ok(engine.GetFrequency());
             }
             catch (EngineMessageException ex)
             {
@@ -138,7 +138,15 @@ namespace efc_web.Controllers
         [Route("api/motor/getrpmreading")]
         public IHttpActionResult GetRpmReading()
         {
-            return Ok(EngineManager.getRpmReading().ToString());
+            return Ok(EngineManager.getRpmReading());
+        }
+
+        [HttpPost]
+        [Route("api/motor/setrpmreading")]
+        public IHttpActionResult SetRpmReading(float rpm)
+        {
+            EngineManager.setRpmReading(rpm);
+            return Ok();
         }
     }
 }
