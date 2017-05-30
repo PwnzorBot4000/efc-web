@@ -28,7 +28,13 @@ namespace EFC
 
 		public static void log(string message)
 		{
-			Instance.logging_func(message);
+			Instance.call_logging_func(message);
 		}
+
+        private void call_logging_func(string message)
+        {
+            if (logging_func != null)
+                logging_func(message);
+        }
 	}
 }
