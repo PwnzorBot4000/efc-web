@@ -35,6 +35,14 @@ namespace efc_web {
 		
 		protected System.Web.UI.WebControls.Label freqgetbox;
 		
+		protected System.Web.UI.WebControls.TextBox rpmsetbox;
+		
+		protected System.Web.UI.WebControls.Button setfixedrpm;
+		
+		protected System.Web.UI.WebControls.Button getfixedrpm;
+		
+		protected System.Web.UI.WebControls.Label rpmsettinggetbox;
+		
 		protected System.Web.UI.WebControls.TextBox inputbox;
 		
 		protected System.Web.UI.WebControls.Button send;

@@ -23,6 +23,12 @@
                 <span><asp:Label ID="freqgetbox" runat="server"></asp:Label><%:get_freq_msg()%></span>
             </div>
             <div>
+                Fixed RPM setting: <span><asp:TextBox ID="rpmsetbox" runat="server"></asp:TextBox></span>RPM
+                <span><asp:Button ID="setfixedrpm" runat="server" Text="Set" OnClick="setfixedrpm_click" /></span>
+                <span><asp:Button ID="getfixedrpm" runat="server" Text="Get" OnClick="getfixedrpm_click" /></span>
+                <span><asp:Label ID="rpmsettinggetbox" runat="server"></asp:Label><%:get_rpm_setting_msg()%></span>
+            </div>
+            <div>
                 <span><asp:TextBox ID="inputbox" runat="server"></asp:TextBox></span>
                 <span><asp:Button ID="send" runat="server" Text="Send" OnClick="send_click" /></span>
             </div>

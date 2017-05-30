@@ -83,6 +83,15 @@ namespace efc_web
         public void setRpmReading(float rpm)
         {
             last_rpm = rpm;
+
+            // Control
+            if (engine.Status () == EngineStatus.Running &&
+                rpm > 10) {
+                if (rpm < rpm_target - 15)
+                    engine.SetFrequency (engine.GetFrequency () + 0.1);
+                else if (rpm > rpm_target + 15)
+                    engine.SetFrequency (engine.GetFrequency () - 0.1);
+            }
         }
 
         public float getRpmTarget()

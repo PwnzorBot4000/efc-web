@@ -54,14 +54,36 @@ namespace efc_web
 
         protected void setFreq_click(object sender, EventArgs e)
         {
-            string input = freqsetbox.Text;
-            float hertz = Convert.ToSingle(input);
-            engine_manager.setFrequency(hertz);
+            try {
+                string input = freqsetbox.Text;
+                float hertz = Convert.ToSingle(input);
+                engine_manager.setFrequency(hertz);
+            }
+            catch (FormatException ex) {
+                writeLine (ex.Message);
+            }
         }
 
         protected void getFreq_click(object sender, EventArgs e)
         {
             freqgetbox.Text = get_freq_msg();
+        }
+
+        protected void setfixedrpm_click(object sender, EventArgs e)
+        {
+            try {
+                string input = rpmsetbox.Text;
+                float rpm = Convert.ToSingle(input);
+                engine_manager.setRpmTarget(rpm);
+            }
+            catch (FormatException ex) {
+                writeLine (ex.Message);
+            }
+        }
+
+        protected void getfixedrpm_click(object sender, EventArgs e)
+        {
+            rpmsettinggetbox.Text = get_rpm_setting_msg();
         }
 
         /// Debug function for directly accessing vega drive's registers. 
@@ -112,6 +134,18 @@ namespace efc_web
             catch (EngineMessageException)
             {
                 return "";
+            }
+        }
+
+        protected String get_rpm_setting_msg()
+        {
+            try
+            {
+                return engine_manager.getRpmTarget() + " RPM";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
             }
         }
 
