@@ -36,7 +36,6 @@ namespace EFC
         Fault = 4,
         Accelerating = 8,
         Decelerating = 10,
-        SpeedReached = 1,
         DcBreaking = 14
     }
 

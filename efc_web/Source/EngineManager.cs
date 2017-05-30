@@ -88,9 +88,9 @@ namespace efc_web
             if (engine.Status () == EngineStatus.Running &&
                 rpm > 10) {
                 if (rpm < rpm_target - 15)
-                    engine.SetFrequency (engine.GetFrequency () + 0.1);
+                    engine.SetFrequency (engine.GetFrequency () + 0.1f);
                 else if (rpm > rpm_target + 15)
-                    engine.SetFrequency (engine.GetFrequency () - 0.1);
+                    engine.SetFrequency (engine.GetFrequency () - 0.1f);
             }
         }
 
