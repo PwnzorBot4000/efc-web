@@ -5,6 +5,17 @@
         <meta charset="utf-8" />
         <title>EFC Interface</title>
     </head>
+    <script>
+    window.onload = function poll(){
+        setTimeout(function(){
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "http://efc.hopto.org/api/motor/getrpmreading", true);
+            xmlHttp.send(null);
+            document.getElementById("rpmreadingbox").textContent = xmlHttp.responseText;
+            poll();
+        }, 3000);
+    };
+    </script>
     <body>
         <h3>EFC - Motor Control Interface</h3>
         <form id="messageform" runat="server">
@@ -20,13 +31,14 @@
                 Frequency: <span><asp:TextBox ID="freqsetbox" runat="server"></asp:TextBox></span>Hz
                 <span><asp:Button ID="setFreq" runat="server" Text="Set" OnClick="setFreq_click" /></span>
                 <span><asp:Button ID="getFreq" runat="server" Text="Get" OnClick="getFreq_click" /></span>
-                <span><asp:Label ID="freqgetbox" runat="server"></asp:Label><%:get_freq_msg()%></span>
+                <span><asp:Label ID="freqgetbox" runat="server"><%:get_freq_msg()%></asp:Label></span>
             </div>
             <div>
                 Fixed RPM setting: <span><asp:TextBox ID="rpmsetbox" runat="server"></asp:TextBox></span>RPM
                 <span><asp:Button ID="setfixedrpm" runat="server" Text="Set" OnClick="setfixedrpm_click" /></span>
                 <span><asp:Button ID="getfixedrpm" runat="server" Text="Get" OnClick="getfixedrpm_click" /></span>
-                <span><asp:Label ID="rpmsettinggetbox" runat="server"></asp:Label><%:get_rpm_setting_msg()%></span>
+                <span><asp:Label ID="rpmsettinggetbox" runat="server"><%:get_rpm_setting_msg()%></asp:Label></span>
+                <span id="rpmreadingbox"></span>
             </div>
             <div>
                 <span><asp:TextBox ID="inputbox" runat="server"></asp:TextBox></span>
